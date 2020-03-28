@@ -1,0 +1,109 @@
+---
+title: tkinter example luhn-guiw (snippet)
+date: 2020-02-09
+tags: ["python"]
+---
+Python tkinter example 'luhn-guiw'
+
+Functions in program: 
+* `def getInput():`
+* `def prosesHitung(ganjil, genap):`
+* `def prosesPisah(data):`
+
+Modules used in program: 
+* `import tkinter.messagebox`
+* `import tkinter`
+
+## python luhn-guiw
+
+Python tkinter example: luhn-guiw
+
+```python
+#!/usr/bin/python
+
+import tkinter
+import tkinter.messagebox
+
+root = tkinter.Tk()
+
+
+# frame default
+root.title('Luhn Simpel')
+root.geometry('360x80')
+root.withdraw()
+root.update_idletasks()
+
+# inisialisasi ukuran layar
+x = (root.winfo_screenwidth() - root.winfo_reqwidth()) / 3
+y = (root.winfo_screenheight() - root.winfo_reqheight()) / 4
+root.geometry("+%d+%d" % (x, y))
+
+# setting label
+tkinter.Label(root, text="Nomor Kartu Kredit").grid(row=0)
+tkinter.Label(root, text="Hasil").grid(row=1, column=0)
+
+# setting inputan
+inputan = tkinter.Entry(root)
+inputan.grid(row=0, column=1)
+inputan.focus_set()
+
+# fungsi melakukan pemisahan ganjil dan genap
+def prosesPisah(data):
+	ganjil = [int(i) for i in str(data)[::2]]
+	genap = [int(i) for i in str(data)[1::2]]
+	prosesHitung(ganjil, genap)
+
+def prosesHitung(ganjil, genap):
+	j = 0
+	for i in ganjil:
+		if((int(i) * 2) > 9):
+			ganjil[j] = (int(i) * 2) - 9
+		else:
+			ganjil[j] = int(i) * 2
+		j += 1
+	# Jumlahkan semua digit posisi ganjil dan genap baru
+	jmlGenap = 0
+	jmlGanjil = 0
+	for i in genap:
+		jmlGenap = jmlGenap + int(i)
+
+	for i in ganjil:
+		jmlGanjil = jmlGanjil + int(i)
+
+	# Jumlahkan Jumlah Ganjil + Jumlah Genap
+	total = jmlGanjil + jmlGenap
+
+	# Jika hasilnya habis dibagi 10, maka kartu anda asli
+	hasil = total % 10
+
+	if hasil == 0:
+		tkinter.Label(root, text="Kartu valid!").grid(row=1, column=1)
+		tkinter.messagebox.showinfo("Selamat", "Kartu anda valid!")
+	else:
+		tkinter.Label(root, text="Kartu tidak valid!").grid(row=1, column=1)
+
+# Fungsi untuk mendapatkan inputan
+def getInput():
+	try:
+		number = int(inputan.get())
+		if(len(str(number)) < 16):
+			tkinter.messagebox.showwarning("Warning!!", "Masukkan 16 digit angka")
+	except Exception as err:
+		tkinter.messagebox.showwarning("Warning!!", "Inputkanlah hanya angka")
+		print(err)
+	prosesPisah(number)
+
+
+#setting button
+button = tkinter.Button(root, text="Proses", command=getInput).grid(row=0, column=2)
+# panggil gui
+root.deiconify()
+root.mainloop()
+
+
+```
+
+## Python links
+
+- Learn Python: https://pythonbasics.org/
+- Python Tutorial: https://pythonprogramminglanguage.com

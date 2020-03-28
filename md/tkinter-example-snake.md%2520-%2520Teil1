@@ -1,0 +1,96 @@
+---
+title: tkinter example snake%2520-%2520Teil1 (snippet)
+date: 2020-02-09
+tags: ["python"]
+---
+Python tkinter example 'snake%2520-%2520Teil1'
+
+
+Modules used in program: 
+* `import time, random`
+
+## python snake%2520-%2520Teil1
+
+Python tkinter example: snake%2520-%2520Teil1
+
+```python
+PLAYGROUND_WIDTH=300
+PLAYGROUND_HEIGHT=200
+PLAYGROUND_COLOR='white'
+SNAKE_HEAD_COLOR='green'
+SNAKE_BODY_COLOR='green'
+SNAKE_MOVING_SPEED=10
+
+try:
+    import Tkinter
+except:
+    import tkinter as Tkinter
+
+import time, random
+
+# Creating Main Function
+class main(Tkinter.Tk):
+    def __init__(self, *args, **kwargs):
+           Tkinter.Tk.__init__(self, *args, **kwargs)
+           # Trigger Of Other Functions
+           self.creating_playground()
+           self.creating_snake_head()
+           self.creating_snake_moving_settings()
+           self.creating_score_board()
+           self.bind('<Any-KeyPress>',self.connecting_head_with_keys)
+
+    # Creating Score Board
+    def creating_score_board(self):
+           
+           return
+
+    # Updating Score Board
+    def update_score_board(self):
+           
+           return
+
+    # Creating Snake Moving Settings
+    def creating_snake_moving_settings(self):
+           
+           return
+    
+    # Creating Snake Moving Head
+    def connecting_head_with_keys(self, event=None):
+           key=event.keysym
+           if key=='Left':
+                  self.turn_left()
+           elif key=='Right':
+                  self.turn_right()
+           elif key=='Up':
+                  self.turn_up()
+           elif key=='Down':
+                  self.turn_down()
+           else:
+                  pass
+           return
+
+    # Creating snake Head
+    def creating_snake_head(self):
+           return
+
+	# Creating Ground
+    def creating_playground(self):
+           return
+		
+
+# Script Trigger
+if __name__ == '__main__':
+    root=main(className=" Schlangenspiel ")
+    while True:
+        root.update()
+        root.update_idletasks()
+        #root.re_update()
+        time.sleep(0.2)
+
+
+```
+
+## Python links
+
+- Learn Python: https://pythonbasics.org/
+- Python Tutorial: https://pythonprogramminglanguage.com

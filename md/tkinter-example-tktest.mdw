@@ -1,0 +1,61 @@
+---
+title: tkinter example tktestw (snippet)
+date: 2020-02-09
+tags: ["python"]
+---
+Python tkinter example 'tktestw'
+
+Functions in program: 
+* `def button_quit_on_click():`
+* `def button_ok_on_click():`
+* `def canvas_on_resize(event):`
+
+Modules used in program: 
+* `import tkinter.messagebox`
+* `import tkinter.ttk`
+* `import tkinter`
+
+## python tktestw
+
+Python tkinter example: tktestw
+
+```python
+#coding=utf-8
+import tkinter
+import tkinter.ttk
+import tkinter.messagebox
+
+tkMain=tkinter.Tk()
+
+def canvas_on_resize(event):
+	tkMain.title("Canvas size: %dx%d"%(event.width,event.height))
+	#具有每个图形的元数据信息，因此不能重复创建，只能修改图形属性
+	#coords:修改坐标，itemconfig:修改图形自身属性，move:移动图形
+	tkCanvas.coords(tkEllipse,0,0,event.width,event.height)
+
+def button_ok_on_click():
+	tkinter.messagebox.showinfo("提示","你输入的文字是：\n"+tkEdit.get())
+
+def button_quit_on_click():
+	tkMain.quit()
+
+button_ok=tkinter.ttk.Button(tkMain,text="确定",command=button_ok_on_click)
+button_quit=tkinter.ttk.Button(tkMain,text="Close",command=button_quit_on_click)
+tkCanvas=tkinter.Canvas(tkMain,width=800,height=440,bg="blue")
+tkCanvas.bind("<Configure>", canvas_on_resize)
+tkEllipse=tkCanvas.create_oval(0,0,0,0,outline="white")
+tkEdit=tkinter.ttk.Entry(tkMain)
+tkCanvas.pack(expand=tkinter.YES,fill=tkinter.BOTH)
+tkEdit.pack(expand=tkinter.YES,fill=tkinter.X,side=tkinter.LEFT)
+button_ok.pack(side=tkinter.LEFT)
+button_quit.pack(side=tkinter.LEFT)
+
+tkMain.mainloop()
+
+
+```
+
+## Python links
+
+- Learn Python: https://pythonbasics.org/
+- Python Tutorial: https://pythonprogramminglanguage.com

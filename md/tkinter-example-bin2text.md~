@@ -1,0 +1,81 @@
+---
+title: tkinter example bin2text (snippet)
+date: 2020-02-09
+tags: ["python"]
+---
+Python tkinter example 'bin2text'
+
+
+Modules used in program: 
+* `import tkinter.constants`
+* `import tkinter`
+
+## python bin2text
+
+Python tkinter example: bin2text
+
+```python
+#!/usr/bin/env python
+
+__author__ = 'Max DeLiso'
+
+import tkinter
+import tkinter.constants
+
+from binutils import binEncodeString, attemptDecode, binDecodeString
+
+class TkTest(tkinter.Frame):
+  def __init__(self, master=None):
+    tkinter.Frame.__init__(self, master)
+
+    #TODO: refactor these into a class for brevity
+
+    self.INPUT_L = tkinter.Text(self)
+    self.INPUT_L.grid(column=0, row=1, sticky=tkinter.NSEW, padx=2, pady=2)
+    self.INPUT_L.bind("<KeyRelease>", self.on_left_text_update)
+    self.INPUT_L.bind("<FocusIn>", self.on_left_text_update)
+
+    self.INPUT_R = tkinter.Text(self)
+    self.INPUT_R.grid(column=1, row=1, sticky=tkinter.NSEW, padx=2, pady=2)
+    self.INPUT_R.bind("<KeyRelease>", self.on_right_text_update)
+    self.INPUT_R.bind("<FocusIn>", self.on_right_text_update)
+
+    self.LABEL_TOP = tkinter.Label(
+      self,
+      text="text in left field, binary strings in the right",
+      justify=tkinter.constants.CENTER)
+    self.LABEL_TOP.grid(row=0, columnspan=2, sticky=tkinter.S, pady=4)
+
+    self.grid_columnconfigure(0, weight=1)
+    self.grid_columnconfigure(1, weight=1)
+    self.grid_rowconfigure(0, minsize=16)
+    self.grid_rowconfigure(1, weight=1)
+
+  def on_left_text_update(self, ev):
+    self.INPUT_R.replace("0.0", tkinter.END,
+      binEncodeString(self.INPUT_L.get("0.0", tkinter.END)))
+
+  def on_right_text_update(self, ev): # TODO: do this line by line with insert/delete
+    self.INPUT_L.replace("0.0", tkinter.END,
+      binDecodeString(self.INPUT_R.get("0.0", tkinter.END)))
+
+if __name__ == "__main__":
+  root = tkinter.Tk()
+
+  app = TkTest(root)
+  app.grid(sticky=tkinter.NSEW)
+
+  root.title("bin2text")
+  root.grid_columnconfigure(0, weight=1)
+  root.grid_rowconfigure(0, weight=1)
+  root.resizable(True, True)
+
+  root.mainloop()
+
+
+```
+
+## Python links
+
+- Learn Python: https://pythonbasics.org/
+- Python Tutorial: https://pythonprogramminglanguage.com
